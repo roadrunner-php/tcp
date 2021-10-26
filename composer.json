@@ -1,0 +1,49 @@
+{
+  "name": "spiral/roadrunner-tcp",
+  "type": "library",
+  "description": "RoadRunner: TCP worker",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavel Buchnev / butschster",
+      "email": "butschster@gmail.com"
+    },
+    {
+      "name": "RoadRunner Community",
+      "homepage": "https://github.com/spiral/roadrunner/graphs/contributors"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*",
+    "spiral/roadrunner-worker": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Spiral\\RoadRunner\\Tcp\\": "src"
+    }
+  },
+  "require-dev": {
+    "phpstan/phpstan": "~0.12",
+    "phpunit/phpunit": "~8.0",
+    "jetbrains/phpstorm-attributes": "^1.0",
+    "vimeo/psalm": "^4.4",
+    "symfony/var-dumper": "^5.1"
+  },
+  "scripts": {
+    "analyze": "psalm"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.1.x-dev"
+    }
+  },
+  "suggest": {
+    "spiral/roadrunner-cli": "Provides RoadRunner installation and management CLI tools"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
