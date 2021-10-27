@@ -8,10 +8,10 @@ use Spiral\RoadRunner\WorkerInterface;
 use Spiral\RoadRunner\Payload;
 
 /**
- * @psalm-type RequestContext = array {
- *      remoteAddr: string,
- *      server: string,
- *      id: string,
+ * @psalm-type RequestContext = array{
+ *      remoteAddr: string|null,
+ *      server: non-empty-string,
+ *      id: non-empty-string
  * }
  *
  * @see Request
@@ -78,7 +78,7 @@ class TcpWorker implements TcpWorkerInterface
      */
     private function hydrateRequest(Request $request, array $context): void
     {
-        $request->remoteAddr = $context['remoteAddr'];
+        $request->remoteAddr = $context['remoteAddr'] ?? '';
         $request->server = $context['server'];
         $request->connectionId = $context['id'];
     }
