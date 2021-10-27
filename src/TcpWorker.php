@@ -78,8 +78,8 @@ class TcpWorker implements TcpWorkerInterface
      */
     private function hydrateRequest(Request $request, array $context): void
     {
-        $request->remoteAddr = $context['remoteAddr'] ?? '';
+        $request->remoteAddr = $context['remote_addr'] ?? '';
         $request->server = $context['server'];
-        $request->connectionId = $context['id'];
+        $request->connectionUuid = $context['uuid'];
     }
 }

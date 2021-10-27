@@ -26,5 +26,5 @@ final class Request
     /**
      * @var string
      */
-    public string $connectionId = '';
+    public string $connectionUuid = '';
 }
