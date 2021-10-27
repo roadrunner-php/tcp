@@ -48,10 +48,12 @@ class TcpWorker implements TcpWorkerInterface
     }
 
     /** {@inheritDoc} */
-    public function respond(string $body): void
+    public function respond(string $body, bool $close = false): void
     {
+        $context = $close ? self::TCP_RESPOND_CLOSE : self::TCP_RESPOND;
+
         $this->worker->respond(
-            new Payload($body, self::TCP_RESPOND)
+            new Payload($body, $context)
         );
     }
 

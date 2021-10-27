@@ -10,6 +10,7 @@ interface TcpWorkerInterface extends WorkerAwareInterface
 {
     const TCP_CLOSE = 'CLOSE';
     const TCP_RESPOND = 'WRITE';
+    const TCP_RESPOND_CLOSE = 'WRITECLOSE';
     const TCP_READ = 'CONTINUE';
 
     /**
@@ -23,8 +24,9 @@ interface TcpWorkerInterface extends WorkerAwareInterface
      * Send response to the application server.
      *
      * @param string $body Body of response
+     * @param bool $close Close connection after respond
      */
-    public function respond(string $body): void;
+    public function respond(string $body, bool $close = false): void;
 
     /**
      * Close current connection.
