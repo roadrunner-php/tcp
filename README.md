@@ -40,6 +40,27 @@ To download latest version of application server:
 $ vendor/bin/rr get
 ```
 
+Usage:
+-------
+For example, such a configuration would be quite feasible to run:
+
+```yaml
+tcp:
+  servers:
+    tcp_access_point_1:
+      addr: tcp://127.0.0.1:7777
+      delimiter: '\r\n'
+    server2:
+      addr: tcp://127.0.0.1:8889
+      delimiter: '\n\r\.\n\r'
+
+  pool:
+    num_workers: 2
+    max_jobs: 0
+    allocate_timeout: 60s
+    destroy_timeout: 60s
+```
+
 Example:
 -------
 
