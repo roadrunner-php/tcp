@@ -61,8 +61,16 @@ $tcpWorker = new TcpWorker($worker);
 while (true) {
     try {
         $request = $tcpWorker->waitRequest();
+        
+        $tcpWorker->respond(json_encode([
+            'remote_addr' => $request->remoteAddr,
+            'server' => $request->server,
+            'uuid' => $request->connectionUuid,
+            'body' => $request->body
+        ]));
+        
     } catch (\Throwable $e) {
-        $tcpWorker->respond("QUIT\r\n");
+        $tcpWorker->respond("Something went wrong\r\n");
         
         $worker->error((string)$e);
         

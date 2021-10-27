@@ -50,7 +50,25 @@ class TcpWorker implements TcpWorkerInterface
     /** {@inheritDoc} */
     public function respond(string $body): void
     {
-        $this->worker->respond(new Payload($body));
+        $this->worker->respond(
+            new Payload($body, self::TCP_RESPOND)
+        );
+    }
+
+    /** {@inheritDoc} */
+    public function read(): void
+    {
+        $this->worker->respond(
+            new Payload('', self::TCP_READ)
+        );
+    }
+
+    /** {@inheritDoc} */
+    public function close(): void
+    {
+        $this->worker->respond(
+            new Payload('', self::TCP_CLOSE)
+        );
     }
 
     /**

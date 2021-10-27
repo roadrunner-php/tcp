@@ -8,6 +8,10 @@ use Spiral\RoadRunner\WorkerAwareInterface;
 
 interface TcpWorkerInterface extends WorkerAwareInterface
 {
+    const TCP_CLOSE = 'CLOSE';
+    const TCP_RESPOND = 'WRITE';
+    const TCP_READ = 'CONTINUE';
+
     /**
      * Wait for incoming tcp request.
      *
@@ -21,4 +25,14 @@ interface TcpWorkerInterface extends WorkerAwareInterface
      * @param string $body Body of response
      */
     public function respond(string $body): void;
+
+    /**
+     * Close current connection.
+     */
+    public function close(): void;
+
+    /**
+     * Continue read from connection.
+     */
+    public function read(): void;
 }
