@@ -106,16 +106,16 @@ while ($request = $tcpWorker->waitRequest()) {
                    
             $body = $request->body;
             
+            // ... handle request from TCP server [tcp_access_point_1]
             if ($request->server === 'tcp_access_point_1') {
-            
-                // ... handle request from TCP server [tcp_access_point_1]
+
                 // Send response and close connection
                 $tcpWorker->respond('Access denied', true);
-                
+               
+            // ... handle request from TCP server [server2] 
             } elseif ($request->server === 'server2') {
-                // ... handle request from TCP server [server2]
                 
-                // Send response to the TCP connection and wait for next request
+                // Send response to the TCP connection and wait for the next request
                 $tcpWorker->respond(json_encode([
                     'remote_addr' => $request->remoteAddr,
                     'server' => $request->server,
@@ -124,22 +124,22 @@ while ($request = $tcpWorker->waitRequest()) {
                     'event' => $request->event
                 ]));
             }
-            
+           
+        // Handle closed connection event 
         } elseif ($request->event === TcpWorker::EVENT_CLOSED) {
+            // Do something ...
+            
             // You don't need to send response on closed connection
-            $worker->error((string)$e);
         }
         
     } catch (\Throwable $e) {
         $tcpWorker->respond("Something went wrong\r\n", true);
-        
-        // Respond to the RR server with an error.
         $worker->error((string)$e);
-        
-        continue;
     }
 }
 ```
+
+
 
 Testing:
 --------
