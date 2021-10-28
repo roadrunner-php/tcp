@@ -61,7 +61,7 @@ tcp:
 ```
 
 If you have more than 1 worker in your pool TCP server will send received packets to different workers,
-and if you need collect data you have to use storage, that can be accessed by all workers, for example [RoadRunner Key Value](https://github.com/spiral/roadrunner-kv)
+and if you need to collect data you have to use storage, that can be accessed by all workers, for example [RoadRunner Key Value](https://github.com/spiral/roadrunner-kv)
 
 Example:
 -------
