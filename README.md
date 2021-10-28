@@ -49,7 +49,7 @@ tcp:
   servers:
     tcp_access_point_1:
       addr: tcp://127.0.0.1:7777
-      delimiter: "\r\n' # by default
+      delimiter: "\r\n" # by default
     server2:
       addr: tcp://127.0.0.1:8889
 
