@@ -9,9 +9,10 @@ use Spiral\RoadRunner\Payload;
 
 /**
  * @psalm-type RequestContext = array{
- *      remoteAddr: string|null,
+ *      remoteAddr: non-empty-string,
  *      server: non-empty-string,
- *      id: non-empty-string
+ *      id: non-empty-string,
+ *      event: non-empty-string
  * }
  *
  * @see Request
@@ -36,9 +37,9 @@ class TcpWorker implements TcpWorkerInterface
     {
         $payload = $this->worker->waitPayload();
 
-        // Termination request
-        if ($payload === null || !$payload->body) {
-            return null;
+        // Close connection if server received empty payload
+        if ($payload === null) {
+            return $this->close();
         }
 
         /** @var RequestContext $context */
@@ -74,6 +75,8 @@ class TcpWorker implements TcpWorkerInterface
     }
 
     /**
+     * Creates request from received payload.
+     *
      * @param string $body
      * @param RequestContext $context
      * @return Request
@@ -91,6 +94,8 @@ class TcpWorker implements TcpWorkerInterface
     }
 
     /**
+     * Hydrates data from request context.
+     *
      * @param Request $request
      * @param RequestContext $context
      *
@@ -98,8 +103,9 @@ class TcpWorker implements TcpWorkerInterface
      */
     private function hydrateRequest(Request $request, array $context): void
     {
-        $request->remoteAddr = $context['remote_addr'] ?? '';
+        $request->remoteAddr = $context['remote_addr'];
         $request->server = $context['server'];
+        $request->event = $context['event'];
         $request->connectionUuid = $context['uuid'];
     }
 }

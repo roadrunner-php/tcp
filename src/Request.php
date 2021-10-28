@@ -5,26 +5,34 @@ namespace Spiral\RoadRunner\Tcp;
 
 use JetBrains\PhpStorm\Immutable;
 
+/**
+ * @param TcpWorkerInterface::EVENT_* $event
+ */
 #[Immutable]
 final class Request
 {
     /**
-     * @var string
+     * Client IP Address
      */
     public string $remoteAddr = '127.0.0.1';
 
     /**
-     * @var string
+     * Connection event type (CONNECTED, DATA, CLOSED)
+     */
+    public string $event = '';
+
+    /**
+     * Received data from the connection
      */
     public string $body = '';
 
     /**
-     * @var string
-     */
-    public string $server = '';
-
-    /**
-     * @var string
+     * Connection UUID
      */
     public string $connectionUuid = '';
+
+    /**
+     * Server name, which received data
+     */
+    public string $server = '';
 }

@@ -8,10 +8,14 @@ use Spiral\RoadRunner\WorkerAwareInterface;
 
 interface TcpWorkerInterface extends WorkerAwareInterface
 {
-    const TCP_CLOSE = 'CLOSE';
-    const TCP_RESPOND = 'WRITE';
-    const TCP_RESPOND_CLOSE = 'WRITECLOSE';
-    const TCP_READ = 'CONTINUE';
+    public const EVENT_CONNECTED = 'CONNECTED';
+    public const EVENT_DATA = 'DATA';
+    public const EVENT_CLOSED = 'CLOSED';
+
+    public const TCP_CLOSE = 'CLOSE';
+    public const TCP_RESPOND = 'WRITE';
+    public const TCP_RESPOND_CLOSE = 'WRITECLOSE';
+    public const TCP_READ = 'CONTINUE';
 
     /**
      * Wait for incoming tcp request.
