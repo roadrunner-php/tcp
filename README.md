@@ -84,7 +84,7 @@ $tcpWorker = new TcpWorker($worker);
 while ($request = $tcpWorker->waitRequest()) {
 
     try {
-        if ($request->event === TcpWorker::EVENT_CONNECTED) 
+        if ($request->event === TcpWorker::EVENT_CONNECTED) {
             // You can close connection according your restrictions
             if ($request->remoteAddr !== '127.0.0.1') {
                 $tcpWorker->close();
@@ -139,11 +139,8 @@ while ($request = $tcpWorker->waitRequest()) {
 }
 ```
 
-
-
 Testing:
 --------
-
 This codebase is automatically tested via host repository - [spiral/roadrunner](https://github.com/spiral/roadrunner).
 
 License:

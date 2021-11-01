@@ -9,9 +9,9 @@ use Spiral\RoadRunner\Payload;
 
 /**
  * @psalm-type RequestContext = array{
- *      remoteAddr: non-empty-string,
+ *      remote_addr: non-empty-string,
  *      server: non-empty-string,
- *      id: non-empty-string,
+ *      uuid: non-empty-string,
  *      event: non-empty-string
  * }
  *
