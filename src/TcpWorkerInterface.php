@@ -10,7 +10,7 @@ interface TcpWorkerInterface extends WorkerAwareInterface
 {
     public const EVENT_CONNECTED = 'CONNECTED';
     public const EVENT_DATA = 'DATA';
-    public const EVENT_CLOSED = 'CLOSED';
+    public const EVENT_CLOSED = 'CLOSE';
 
     public const TCP_CLOSE = 'CLOSE';
     public const TCP_RESPOND = 'WRITE';

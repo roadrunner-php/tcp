@@ -78,7 +78,8 @@ class TcpWorker implements TcpWorkerInterface
      * Creates request from received payload.
      *
      * @param string $body
-     * @param RequestContext $context
+     * @param array $context
+     *
      * @return Request
      *
      * @psalm-suppress InaccessibleProperty
