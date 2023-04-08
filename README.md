@@ -42,6 +42,8 @@ $ vendor/bin/rr get
 For example, such a configuration would be quite feasible to run:
 
 ```yaml
+version: "3.0"
+
 tcp:
   servers:
     smtp:
