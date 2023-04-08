@@ -14,14 +14,10 @@ RoadRunner includes TCP server and can be used to replace classic TCP setup with
 	<a href="https://roadrunner.dev/docs"><b>Documentation</b></a>
 </p>
 
-Repository:
---------
-
 This repository contains the codebase TCP PHP workers. Check [spiral/roadrunner](https://github.com/spiral/roadrunner)
 to get application server.
 
-Installation:
---------
+## Installation
 
 To install application server and TCP codebase:
 
@@ -41,8 +37,8 @@ To download latest version of application server:
 $ vendor/bin/rr get
 ```
 
-Usage:
--------
+## Usage
+
 For example, such a configuration would be quite feasible to run:
 
 ```yaml
@@ -64,8 +60,7 @@ tcp:
 If you have more than 1 worker in your pool TCP server will send received packets to different workers,
 and if you need to collect data you have to use storage, that can be accessed by all workers, for example [RoadRunner Key Value](https://github.com/spiral/roadrunner-kv)
 
-Example:
--------
+### Example
 
 To init abstract RoadRunner worker:
 
@@ -76,6 +71,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Spiral\RoadRunner\Worker;
 use Spiral\RoadRunner\Tcp\TcpWorker;
+use Spiral\RoadRunner\Tcp\TcpResponse;
 
 // Create new RoadRunner worker from global environment
 $worker = Worker::create();
@@ -111,13 +107,13 @@ while ($request = $tcpWorker->waitRequest()) {
             if ($request->server === 'tcp_access_point_1') {
 
                 // Send response and close connection
-                $tcpWorker->respond('Access denied', true);
+                $tcpWorker->respond('Access denied', TcpResponse::RespondClose);
                
             // ... handle request from TCP server [server2] 
             } elseif ($request->server === 'server2') {
                 
                 // Send response to the TCP connection and wait for the next request
-                $tcpWorker->respond(json_encode([
+                $tcpWorker->respond(\json_encode([
                     'remote_addr' => $request->remoteAddr,
                     'server' => $request->server,
                     'uuid' => $request->connectionUuid,
@@ -134,7 +130,7 @@ while ($request = $tcpWorker->waitRequest()) {
         }
         
     } catch (\Throwable $e) {
-        $tcpWorker->respond("Something went wrong\r\n", true);
+        $tcpWorker->respond("Something went wrong\r\n", TcpResponse::RespondClose);
         $worker->error((string)$e);
     }
 }
@@ -144,12 +140,11 @@ while ($request = $tcpWorker->waitRequest()) {
 <img src="https://user-images.githubusercontent.com/773481/220979012-e67b74b5-3db1-41b7-bdb0-8a042587dedc.jpg" alt="try Spiral Framework" />
 </a>
 
-Testing:
---------
+## Testing:
+
 This codebase is automatically tested via host repository - [spiral/roadrunner](https://github.com/spiral/roadrunner).
 
-License:
---------
+## License:
 
 The MIT License (MIT). Please see [`LICENSE`](./LICENSE) for more information. Maintained
 by [Spiral Scout](https://spiralscout.com).
