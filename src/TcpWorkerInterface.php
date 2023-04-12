@@ -10,8 +10,6 @@ interface TcpWorkerInterface extends WorkerAwareInterface
 {
     /**
      * Wait for incoming tcp request.
-     *
-     * @return Request|null
      */
     public function waitRequest(): ?Request;
 

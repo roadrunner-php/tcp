@@ -7,10 +7,9 @@ use Spiral\RoadRunner\Payload;
 use Spiral\RoadRunner\Tcp\TcpEvent;
 use Spiral\RoadRunner\Tcp\TcpResponse;
 use Spiral\RoadRunner\Tcp\TcpWorker;
-use Spiral\RoadRunner\Tcp\TcpWorkerInterface;
 use Spiral\RoadRunner\WorkerInterface;
 
-class TcpWorkerTestCase extends TestCase
+class TcpWorkerTest extends TestCase
 {
     private TcpWorker $tcpWorker;
     private WorkerInterface $worker;
