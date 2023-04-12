@@ -74,6 +74,7 @@ require __DIR__ . '/vendor/autoload.php';
 use Spiral\RoadRunner\Worker;
 use Spiral\RoadRunner\Tcp\TcpWorker;
 use Spiral\RoadRunner\Tcp\TcpResponse;
+use Spiral\RoadRunner\Tcp\TcpEvent;
 
 // Create new RoadRunner worker from global environment
 $worker = Worker::create();
@@ -83,7 +84,7 @@ $tcpWorker = new TcpWorker($worker);
 while ($request = $tcpWorker->waitRequest()) {
 
     try {
-        if ($request->event === TcpWorker::EVENT_CONNECTED) {
+        if ($request->event === TcpEvent::Connected) {
             // You can close connection according your restrictions
             if ($request->remoteAddr !== '127.0.0.1') {
                 $tcpWorker->close();
@@ -101,7 +102,7 @@ while ($request = $tcpWorker->waitRequest()) {
             // Or send response to the TCP connection, for example, to the SMTP client
             $tcpWorker->respond("220 mailamie \r\n");
             
-        } elseif ($request->event === TcpWorker::EVENT_DATA) {
+        } elseif ($request->event === TcpEvent::Data) {
                    
             $body = $request->body;
             
@@ -125,7 +126,7 @@ while ($request = $tcpWorker->waitRequest()) {
             }
            
         // Handle closed connection event 
-        } elseif ($request->event === TcpWorker::EVENT_CLOSED) {
+        } elseif ($request->event === TcpEvent::Close) {
             // Do something ...
             
             // You don't need to send response on closed connection
