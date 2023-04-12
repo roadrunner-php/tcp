@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Spiral\RoadRunner\Tcp\Tests;
 
 use Spiral\RoadRunner\Payload;
+use Spiral\RoadRunner\Tcp\TcpEvent;
+use Spiral\RoadRunner\Tcp\TcpResponse;
 use Spiral\RoadRunner\Tcp\TcpWorker;
 use Spiral\RoadRunner\Tcp\TcpWorkerInterface;
 use Spiral\RoadRunner\WorkerInterface;
@@ -33,7 +35,7 @@ class TcpWorkerTestCase extends TestCase
             ->expects($this->once())
             ->method('respond')
             ->with($this->callback(function(Payload $payload){
-                return $payload->body === '' && $payload->header === TcpWorkerInterface::TCP_CLOSE;
+                return $payload->body === '' && $payload->header === TcpResponse::Close->value;
             }));
 
         $this->tcpWorker->waitRequest();
@@ -56,14 +58,14 @@ class TcpWorkerTestCase extends TestCase
         $remoteIp = '192.168.1.1';
         $server = 'homestead';
         $uuid = '5191d583-4661-4781-bfe8-4461aab5072e';
-        $event = TcpWorkerInterface::EVENT_CONNECTED;
+        $event = TcpEvent::Connected;
 
         $this->worker
             ->expects($this->once())
             ->method('waitPayload')
             ->willReturn(new Payload('foo', json_encode([
                 'remote_addr' => $remoteIp, 'server' => $server,
-                'uuid' => $uuid, 'event' => $event
+                'uuid' => $uuid, 'event' => $event->value
             ])));
 
         $request = $this->tcpWorker->waitRequest();
@@ -80,7 +82,7 @@ class TcpWorkerTestCase extends TestCase
             ->expects($this->once())
             ->method('respond')
             ->with($this->callback(function(Payload $payload){
-                return $payload->body === '' && $payload->header === TcpWorkerInterface::TCP_READ;
+                return $payload->body === '' && $payload->header === TcpResponse::Read->value;
             }));
 
         $this->tcpWorker->read();
@@ -92,7 +94,7 @@ class TcpWorkerTestCase extends TestCase
             ->expects($this->once())
             ->method('respond')
             ->with($this->callback(function(Payload $payload){
-                return $payload->body === '' && $payload->header === TcpWorkerInterface::TCP_CLOSE;
+                return $payload->body === '' && $payload->header === TcpResponse::Close->value;
             }));
 
         $this->tcpWorker->close();
@@ -104,7 +106,7 @@ class TcpWorkerTestCase extends TestCase
             ->expects($this->once())
             ->method('respond')
             ->with($this->callback(function(Payload $payload){
-                return $payload->body === 'foo' && $payload->header === TcpWorkerInterface::TCP_RESPOND;
+                return $payload->body === 'foo' && $payload->header === TcpResponse::Respond->value;
             }));
 
         $this->tcpWorker->respond('foo');
@@ -116,10 +118,10 @@ class TcpWorkerTestCase extends TestCase
             ->expects($this->once())
             ->method('respond')
             ->with($this->callback(function(Payload $payload){
-                return $payload->body === 'foo' && $payload->header === TcpWorkerInterface::TCP_RESPOND_CLOSE;
+                return $payload->body === 'foo' && $payload->header === TcpResponse::RespondClose->value;
             }));
 
-        $this->tcpWorker->respond('foo', true);
+        $this->tcpWorker->respond('foo', TcpResponse::RespondClose);
     }
 
     public function testGetsWorker()

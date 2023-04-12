@@ -5,18 +5,44 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Pavel Buchnev / butschster",
-            "email": "butschster@gmail.com"
+            "name": "Anton Titov (wolfy-j)",
+            "email": "wolfy-j@spiralscout.com"
+        },
+        {
+            "name": "Pavel Buchnev (butschster)",
+            "email": "pavel.buchnev@spiralscout.com"
+        },
+        {
+            "name": "Aleksei Gagarin (roxblnfk)",
+            "email": "alexey.gagarin@spiralscout.com"
+        },
+        {
+            "name": "Maksim Smakouz (msmakouz)",
+            "email": "maksim.smakouz@spiralscout.com"
         },
         {
             "name": "RoadRunner Community",
             "homepage": "https://github.com/spiral/roadrunner/graphs/contributors"
         }
     ],
+    "homepage": "https://roadrunner.dev/",
+    "support": {
+        "docs": "https://roadrunner.dev/docs",
+        "issues": "https://github.com/roadrunner-server/roadrunner/issues",
+        "forum": "https://forum.roadrunner.dev/",
+        "chat": "https://discord.gg/V6EK4he"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/roadrunner-server"
+        }
+    ],
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.1",
         "ext-json": "*",
-        "spiral/roadrunner-worker": "^2.0"
+        "spiral/roadrunner": "^2023.1",
+        "spiral/roadrunner-worker": "^3.0"
     },
     "autoload": {
         "psr-4": {
@@ -29,16 +55,13 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "~9.5.10",
-        "spiral/code-style": "^1.0",
-        "jetbrains/phpstorm-attributes": "^1.0",
-        "vimeo/psalm": "^4.4"
+        "phpunit/phpunit": "^9.5.28",
+        "vimeo/psalm": ">=5.8",
+        "jetbrains/phpstorm-attributes": "^1.0"
     },
     "scripts": {
         "tests": "phpunit",
-        "cs-fix": "spiral-cs fix src",
-        "cs-check": "spiral-cs check src",
-        "psalm": "psalm --no-cache"
+        "psalm": "psalm"
     },
     "suggest": {
         "spiral/roadrunner-cli": "Provides RoadRunner installation and management CLI tools"
