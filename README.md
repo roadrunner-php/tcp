@@ -11,7 +11,7 @@ RoadRunner includes TCP server and can be used to replace classic TCP setup with
 
 <p align="center">
 	<a href="https://roadrunner.dev/"><b>Official Website</b></a> | 
-	<a href="https://roadrunner.dev/docs"><b>Documentation</b></a>
+	<a href="https://docs.roadrunner.dev"><b>Documentation</b></a>
 </p>
 
 This repository contains the codebase TCP PHP workers. Check [spiral/roadrunner](https://github.com/spiral/roadrunner)
