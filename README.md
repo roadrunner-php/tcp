@@ -1,8 +1,14 @@
+<a href="https://roadrunner.dev" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/roadrunner-server/.github/assets/8040338/e6bde856-4ec6-4a52-bd5b-bfe78736c1ff">
+    <img align="center" src="https://github.com/roadrunner-server/.github/assets/8040338/040fb694-1dd3-4865-9d29-8e0748c2c8b8">
+  </picture>
+</a>
+
 # RoadRunner TCP Plugin
 
 [![Latest Stable Version](https://poser.pugx.org/spiral/roadrunner-tcp/version)](https://packagist.org/packages/spiral/roadrunner-tcp)
 [![Build Status](https://github.com/spiral/roadrunner-tcp/workflows/build/badge.svg)](https://github.com/spiral/roadrunner-tcp/actions)
-[![Codecov](https://codecov.io/gh/spiral/roadrunner-tcp/branch/master/graph/badge.svg)](https://codecov.io/gh/spiral/roadrunner-tcp/)
 
 RoadRunner is an open-source (MIT licensed) high-performance PHP application server, load balancer, and process manager.
 It supports running as a service with the ability to extend its functionality on a per-project basis.
