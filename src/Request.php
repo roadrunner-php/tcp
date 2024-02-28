@@ -47,8 +47,6 @@ final class Request implements RequestInterface
 
     /**
      * Returns the received data from the connection.
-     *
-     * @return non-empty-string
      */
     public function getBody(): string
     {
