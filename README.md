@@ -94,7 +94,7 @@ $tcpWorker = new TcpWorker($worker);
 while ($request = $tcpWorker->waitRequest()) {
 
     try {
-        if ($request->event === TcpEvent::Connected) {
+        if ($request->getEvent() === TcpEvent::Connected) {
             // You can close connection according your restrictions
             if ($request->getRemoteAddress() !== '127.0.0.1') {
                 $tcpWorker->close();
