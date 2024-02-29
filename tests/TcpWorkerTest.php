@@ -70,10 +70,10 @@ final class TcpWorkerTest extends TestCase
 
         $request = $this->tcpWorker->waitRequest();
 
-        $this->assertSame($remoteIp, $request->remoteAddr);
-        $this->assertSame($server, $request->server);
-        $this->assertSame($uuid, $request->connectionUuid);
-        $this->assertSame($event, $request->event);
+        $this->assertSame($remoteIp, $request->getRemoteAddress());
+        $this->assertSame($server, $request->getServer());
+        $this->assertSame($uuid, $request->getConnectionUuid());
+        $this->assertSame($event, $request->getEvent());
     }
 
     public function testReadResponse()

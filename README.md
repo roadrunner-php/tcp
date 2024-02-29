@@ -11,7 +11,7 @@
 [![Latest Stable Version](https://poser.pugx.org/spiral/roadrunner-tcp/v/stable)](https://packagist.org/packages/spiral/roadrunner-tcp)
 [![phpunit](https://github.com/spiral/roadrunner-tcp/actions/workflows/phpunit.yml/badge.svg)](https://github.com/spiral/roadrunner-tcp/actions)
 [![psalm](https://github.com/spiral/roadrunner-tcp/actions/workflows/psalm.yml/badge.svg)](https://github.com/spiral/roadrunner-tcp/actions)
-[![Codecov](https://codecov.io/gh/roadrunner-php/tcp/branch/3.x/graph/badge.svg)](https://codecov.io/gh/roadrunner-php/tcp)
+[![Codecov](https://codecov.io/gh/roadrunner-php/tcp/branch/4.x/graph/badge.svg)](https://codecov.io/gh/roadrunner-php/tcp)
 [![Total Downloads](https://poser.pugx.org/spiral/roadrunner-tcp/downloads)](https://packagist.org/packages/spiral/roadrunner-tcp)
 [![type-coverage](https://shepherd.dev/github/roadrunner-php/tcp/coverage.svg)](https://shepherd.dev/github/spiral/roadrunner-php/tcp)
 [![psalm-level](https://shepherd.dev/github/roadrunner-php/tcp/level.svg)](https://shepherd.dev/github/roadrunner-php/tcp)
@@ -94,7 +94,7 @@ $tcpWorker = new TcpWorker($worker);
 while ($request = $tcpWorker->waitRequest()) {
 
     try {
-        if ($request->event === TcpEvent::Connected) {
+        if ($request->getEvent() === TcpEvent::Connected) {
             // You can close connection according your restrictions
             if ($request->getRemoteAddress() !== '127.0.0.1') {
                 $tcpWorker->close();
