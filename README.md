@@ -11,10 +11,10 @@
 [![Latest Stable Version](https://poser.pugx.org/spiral/roadrunner-tcp/v/stable)](https://packagist.org/packages/spiral/roadrunner-tcp)
 [![phpunit](https://github.com/spiral/roadrunner-tcp/actions/workflows/phpunit.yml/badge.svg)](https://github.com/spiral/roadrunner-tcp/actions)
 [![psalm](https://github.com/spiral/roadrunner-tcp/actions/workflows/psalm.yml/badge.svg)](https://github.com/spiral/roadrunner-tcp/actions)
-[![Codecov](https://codecov.io/gh/spiral/roadrunner-tcp/branch/3.x/graph/badge.svg)](https://codecov.io/gh/spiral/roadrunner-tcp)
+[![Codecov](https://codecov.io/gh/roadrunner-php/tcp/branch/3.x/graph/badge.svg)](https://codecov.io/gh/roadrunner-php/tcp)
 [![Total Downloads](https://poser.pugx.org/spiral/roadrunner-tcp/downloads)](https://packagist.org/packages/spiral/roadrunner-tcp)
-[![type-coverage](https://shepherd.dev/github/spiral/roadrunner-tcp/coverage.svg)](https://shepherd.dev/github/spiral/roadrunner-tcp)
-[![psalm-level](https://shepherd.dev/github/spiral/roadrunner-tcp/level.svg)](https://shepherd.dev/github/spiral/roadrunner-tcp)
+[![type-coverage](https://shepherd.dev/github/roadrunner-php/tcp/coverage.svg)](https://shepherd.dev/github/spiral/roadrunner-php/tcp)
+[![psalm-level](https://shepherd.dev/github/roadrunner-php/tcp/level.svg)](https://shepherd.dev/github/roadrunner-php/tcp)
 
 RoadRunner is an open-source (MIT licensed) high-performance PHP application server, load balancer, and process manager.
 It supports running as a service with the ability to extend its functionality on a per-project basis.
