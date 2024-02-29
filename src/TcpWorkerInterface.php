@@ -11,7 +11,7 @@ interface TcpWorkerInterface extends WorkerAwareInterface
     /**
      * Wait for incoming tcp request.
      */
-    public function waitRequest(): ?Request;
+    public function waitRequest(): ?RequestInterface;
 
     /**
      * Send response to the application server.

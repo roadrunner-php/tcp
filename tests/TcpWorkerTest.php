@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Spiral\RoadRunner\Tcp\Tests;
@@ -9,7 +10,7 @@ use Spiral\RoadRunner\Tcp\TcpResponse;
 use Spiral\RoadRunner\Tcp\TcpWorker;
 use Spiral\RoadRunner\WorkerInterface;
 
-class TcpWorkerTest extends TestCase
+final class TcpWorkerTest extends TestCase
 {
     private TcpWorker $tcpWorker;
     private WorkerInterface $worker;

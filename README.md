@@ -7,8 +7,14 @@
 
 # RoadRunner TCP Plugin
 
-[![Latest Stable Version](https://poser.pugx.org/spiral/roadrunner-tcp/version)](https://packagist.org/packages/spiral/roadrunner-tcp)
-[![Build Status](https://github.com/spiral/roadrunner-tcp/workflows/build/badge.svg)](https://github.com/spiral/roadrunner-tcp/actions)
+[![PHP Version Require](https://poser.pugx.org/spiral/roadrunner-tcp/require/php)](https://packagist.org/packages/spiral/roadrunner-tcp)
+[![Latest Stable Version](https://poser.pugx.org/spiral/roadrunner-tcp/v/stable)](https://packagist.org/packages/spiral/roadrunner-tcp)
+[![phpunit](https://github.com/spiral/roadrunner-tcp/actions/workflows/phpunit.yml/badge.svg)](https://github.com/spiral/roadrunner-tcp/actions)
+[![psalm](https://github.com/spiral/roadrunner-tcp/actions/workflows/psalm.yml/badge.svg)](https://github.com/spiral/roadrunner-tcp/actions)
+[![Codecov](https://codecov.io/gh/spiral/roadrunner-tcp/branch/3.x/graph/badge.svg)](https://codecov.io/gh/spiral/roadrunner-tcp)
+[![Total Downloads](https://poser.pugx.org/spiral/roadrunner-tcp/downloads)](https://packagist.org/packages/spiral/roadrunner-tcp)
+[![type-coverage](https://shepherd.dev/github/spiral/roadrunner-tcp/coverage.svg)](https://shepherd.dev/github/spiral/roadrunner-tcp)
+[![psalm-level](https://shepherd.dev/github/spiral/roadrunner-tcp/level.svg)](https://shepherd.dev/github/spiral/roadrunner-tcp)
 
 RoadRunner is an open-source (MIT licensed) high-performance PHP application server, load balancer, and process manager.
 It supports running as a service with the ability to extend its functionality on a per-project basis.
@@ -28,19 +34,19 @@ to get application server.
 To install application server and TCP codebase:
 
 ```bash
-$ composer require spiral/roadrunner-tcp
+composer require spiral/roadrunner-tcp
 ```
 
 You can use the convenient installer to download the latest available compatible version of RoadRunner assembly:
 
 ```bash
-$ composer require spiral/roadrunner-cli --dev
+composer require spiral/roadrunner-cli --dev
 ```
 
 To download latest version of application server:
 
 ```bash
-$ vendor/bin/rr get
+vendor/bin/rr get
 ```
 
 ## Usage
@@ -90,7 +96,7 @@ while ($request = $tcpWorker->waitRequest()) {
     try {
         if ($request->event === TcpEvent::Connected) {
             // You can close connection according your restrictions
-            if ($request->remoteAddr !== '127.0.0.1') {
+            if ($request->getRemoteAddress() !== '127.0.0.1') {
                 $tcpWorker->close();
                 continue;
             }
@@ -106,31 +112,31 @@ while ($request = $tcpWorker->waitRequest()) {
             // Or send response to the TCP connection, for example, to the SMTP client
             $tcpWorker->respond("220 mailamie \r\n");
             
-        } elseif ($request->event === TcpEvent::Data) {
+        } elseif ($request->getEvent() === TcpEvent::Data) {
                    
-            $body = $request->body;
+            $body = $request->getBody();
             
             // ... handle request from TCP server [tcp_access_point_1]
-            if ($request->server === 'tcp_access_point_1') {
+            if ($request->getServer() === 'tcp_access_point_1') {
 
                 // Send response and close connection
                 $tcpWorker->respond('Access denied', TcpResponse::RespondClose);
                
             // ... handle request from TCP server [server2] 
-            } elseif ($request->server === 'server2') {
+            } elseif ($request->getServer() === 'server2') {
                 
                 // Send response to the TCP connection and wait for the next request
                 $tcpWorker->respond(\json_encode([
-                    'remote_addr' => $request->remoteAddr,
-                    'server' => $request->server,
-                    'uuid' => $request->connectionUuid,
-                    'body' => $request->body,
-                    'event' => $request->event
+                    'remote_addr' => $request->getRemoteAddress(),
+                    'server' => $request->getServer(),
+                    'uuid' => $request->getConnectionUuid(),
+                    'body' => $request->getBody(),
+                    'event' => $request->getEvent()
                 ]));
             }
            
         // Handle closed connection event 
-        } elseif ($request->event === TcpEvent::Close) {
+        } elseif ($request->getEvent() === TcpEvent::Close) {
             // Do something ...
             
             // You don't need to send response on closed connection

@@ -29,7 +29,7 @@ class TcpWorker implements TcpWorkerInterface
         return $this->worker;
     }
 
-    public function waitRequest(): ?Request
+    public function waitRequest(): ?RequestInterface
     {
         $payload = $this->worker->waitPayload();
 
