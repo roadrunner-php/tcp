@@ -14,16 +14,11 @@ final class Request implements RequestInterface
      * @param non-empty-string $server Server name, which received data
      */
     public function __construct(
-        /** @since 4.0 This property will be private, use {@see getRemoteAddress()} method. */
-        public readonly string $remoteAddr,
-        /** @since 4.0 This property will be private, use {@see getEvent()} method. */
-        public readonly TcpEvent $event,
-        /** @since 4.0 This property will be private, use {@see getBody()} method. */
-        public readonly string $body,
-        /** @since 4.0 This property will be private, use {@see getConnectionUuid()} method. */
-        public readonly string $connectionUuid,
-        /** @since 4.0 This property will be private, use {@see getServer()} method. */
-        public readonly string $server,
+        private readonly string $remoteAddr,
+        private readonly TcpEvent $event,
+        private readonly string $body,
+        private readonly string $connectionUuid,
+        private readonly string $server,
     ) {
     }
 
