@@ -11,6 +11,9 @@
     <issueHandlers>
         <RedundantConditionGivenDocblockType errorLevel="suppress" />
         <RedundantCastGivenDocblockType errorLevel="suppress" />
+        <!-- Temporary: new in Psalm 6, addressed in a follow-up static analysis PR -->
+        <MissingOverrideAttribute errorLevel="suppress" />
+        <ClassMustBeFinal errorLevel="suppress" />
     </issueHandlers>
     <projectFiles>
         <directory name="src" />
