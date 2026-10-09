@@ -7,3 +7,4 @@
 .travis.yml export-ignore
 testo.php export-ignore
 .php-cs-fixer.dist.php export-ignore
+infection.json5 export-ignore
