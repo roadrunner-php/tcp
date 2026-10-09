@@ -2,45 +2,48 @@
 
 declare(strict_types=1);
 
-namespace Spiral\RoadRunner\Tcp\Tests;
+namespace Spiral\RoadRunner\Tcp\Tests\Unit;
 
+use Testo\Test;
+use Testo\Assert;
 use Spiral\RoadRunner\Tcp\Request;
 use Spiral\RoadRunner\Tcp\TcpEvent;
 
-final class RequestTest extends TestCase
+#[Test]
+final class RequestTest
 {
     public function testGetRemoteAddress(): void
     {
         $request = new Request('127.0.0.1', TcpEvent::Close, '', '', '');
 
-        $this->assertSame('127.0.0.1', $request->getRemoteAddress());
+        Assert::same($request->getRemoteAddress(), '127.0.0.1');
     }
 
     public function testGetEvent(): void
     {
         $request = new Request('', TcpEvent::Close, '', '', '');
 
-        $this->assertSame(TcpEvent::Close, $request->getEvent());
+        Assert::same($request->getEvent(), TcpEvent::Close);
     }
 
     public function testGetBody(): void
     {
         $request = new Request('', TcpEvent::Close, 'foo', '', '');
 
-        $this->assertSame('foo', $request->getBody());
+        Assert::same($request->getBody(), 'foo');
     }
 
     public function testGetConnectionUuid(): void
     {
         $request = new Request('', TcpEvent::Close, '', 'bar', '');
 
-        $this->assertSame('bar', $request->getConnectionUuid());
+        Assert::same($request->getConnectionUuid(), 'bar');
     }
 
     public function testGetServer(): void
     {
         $request = new Request('', TcpEvent::Close, '', '', 'baz');
 
-        $this->assertSame('baz', $request->getServer());
+        Assert::same($request->getServer(), 'baz');
     }
 }
