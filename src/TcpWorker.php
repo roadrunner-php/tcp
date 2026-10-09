@@ -21,14 +21,15 @@ class TcpWorker implements TcpWorkerInterface
 {
     public function __construct(
         private readonly WorkerInterface $worker,
-    ) {
-    }
+    ) {}
 
+    #[\Override]
     public function getWorker(): WorkerInterface
     {
         return $this->worker;
     }
 
+    #[\Override]
     public function waitRequest(): ?RequestInterface
     {
         $payload = $this->worker->waitPayload();
@@ -45,6 +46,7 @@ class TcpWorker implements TcpWorkerInterface
         return $this->createRequest($payload->body, $context);
     }
 
+    #[\Override]
     public function respond(string $body, TcpResponse $response = TcpResponse::Respond): void
     {
         $this->worker->respond(
@@ -52,11 +54,13 @@ class TcpWorker implements TcpWorkerInterface
         );
     }
 
+    #[\Override]
     public function read(): void
     {
         $this->respond('', TcpResponse::Read);
     }
 
+    #[\Override]
     public function close(): void
     {
         $this->respond('', TcpResponse::Close);

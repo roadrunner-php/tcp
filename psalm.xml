@@ -11,6 +11,8 @@
     <issueHandlers>
         <RedundantConditionGivenDocblockType errorLevel="suppress" />
         <RedundantCastGivenDocblockType errorLevel="suppress" />
+        <!-- TcpWorker is public API that users may extend; making it final would break BC -->
+        <ClassMustBeFinal errorLevel="suppress" />
     </issueHandlers>
     <projectFiles>
         <directory name="src" />

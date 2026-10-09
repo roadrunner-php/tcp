@@ -1,33 +1,29 @@
-<a href="https://roadrunner.dev" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/roadrunner-server/.github/assets/8040338/e6bde856-4ec6-4a52-bd5b-bfe78736c1ff">
-    <img align="center" src="https://github.com/roadrunner-server/.github/assets/8040338/040fb694-1dd3-4865-9d29-8e0748c2c8b8">
-  </picture>
-</a>
-
-# RoadRunner TCP Plugin
-
-[![PHP Version Require](https://poser.pugx.org/spiral/roadrunner-tcp/require/php)](https://packagist.org/packages/spiral/roadrunner-tcp)
-[![Latest Stable Version](https://poser.pugx.org/spiral/roadrunner-tcp/v/stable)](https://packagist.org/packages/spiral/roadrunner-tcp)
-[![phpunit](https://github.com/spiral/roadrunner-tcp/actions/workflows/phpunit.yml/badge.svg)](https://github.com/spiral/roadrunner-tcp/actions)
-[![psalm](https://github.com/spiral/roadrunner-tcp/actions/workflows/psalm.yml/badge.svg)](https://github.com/spiral/roadrunner-tcp/actions)
-[![Codecov](https://codecov.io/gh/roadrunner-php/tcp/branch/4.x/graph/badge.svg)](https://codecov.io/gh/roadrunner-php/tcp)
-[![Total Downloads](https://poser.pugx.org/spiral/roadrunner-tcp/downloads)](https://packagist.org/packages/spiral/roadrunner-tcp)
-[![type-coverage](https://shepherd.dev/github/roadrunner-php/tcp/coverage.svg)](https://shepherd.dev/github/spiral/roadrunner-php/tcp)
-[![psalm-level](https://shepherd.dev/github/roadrunner-php/tcp/level.svg)](https://shepherd.dev/github/roadrunner-php/tcp)
-
-RoadRunner is an open-source (MIT licensed) high-performance PHP application server, load balancer, and process manager.
-It supports running as a service with the ability to extend its functionality on a per-project basis.
-
-RoadRunner includes TCP server and can be used to replace classic TCP setup with much greater performance and flexibility.
-
 <p align="center">
-	<a href="https://roadrunner.dev/"><b>Official Website</b></a> | 
-	<a href="https://docs.roadrunner.dev"><b>Documentation</b></a>
+    <a href="https://roadrunner.dev"><picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://github.com/roadrunner-server/.github/assets/8040338/e6bde856-4ec6-4a52-bd5b-bfe78736c1ff">
+        <img alt="RoadRunner" src="https://github.com/roadrunner-server/.github/assets/8040338/040fb694-1dd3-4865-9d29-8e0748c2c8b8" style="width: 6in; display: block">
+    </picture></a>
 </p>
 
-This repository contains the codebase TCP PHP workers. Check [spiral/roadrunner](https://github.com/spiral/roadrunner)
-to get application server.
+<p align="center">PHP worker for the RoadRunner TCP plugin</p>
+
+<div align="center">
+
+[![Documentation](https://img.shields.io/badge/Documentation-blue?style=for-the-badge&logo=gitbook&logoColor=white)](https://docs.roadrunner.dev/docs/plugins/tcp)
+[![Sponsor](https://img.shields.io/static/v1?style=for-the-badge&label=&message=Sponsor&logo=githubsponsors&logoColor=white&color=%23EA4AAA)](https://github.com/sponsors/roadrunner-server)
+
+[![Psalm Level](https://shepherd.dev/github/roadrunner-php/tcp/level.svg)](https://shepherd.dev/github/roadrunner-php/tcp)
+[![Type Coverage](https://shepherd.dev/github/roadrunner-php/tcp/coverage.svg)](https://shepherd.dev/github/roadrunner-php/tcp)
+[![Codecov](https://codecov.io/gh/roadrunner-php/tcp/branch/4.x/graph/badge.svg)](https://codecov.io/gh/roadrunner-php/tcp)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Froadrunner-php%2Ftcp%2F4.x)](https://dashboard.stryker-mutator.io/reports/github.com/roadrunner-php/tcp/4.x)
+
+</div>
+
+<br />
+
+RoadRunner can serve raw TCP connections and pass their events to PHP workers.
+This package provides the worker side: it receives connection events and data from the TCP servers configured
+in [RoadRunner](https://github.com/roadrunner-server/roadrunner) and responds, keeps reading, or closes the connection.
 
 > [!WARNING]
 > The TCP plugin is not included in the standard RoadRunner v3 build. To use the `tcp:` plugin with RoadRunner v3,
@@ -37,14 +33,22 @@ to get application server.
 > This does not affect the `tcp://` transport for RPC or worker relays.
 > See the [TCP plugin documentation](https://github.com/roadrunner-server/docs/blob/release/v3/plugins/tcp.md).
 
-## Installation
+## Get Started
 
-To install application server and TCP codebase:
+### Installation
 
 ```bash
 composer require spiral/roadrunner-tcp
 ```
 
+[![PHP](https://img.shields.io/packagist/php-v/spiral/roadrunner-tcp.svg?style=flat-square&logo=php)](https://packagist.org/packages/spiral/roadrunner-tcp)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spiral/roadrunner-tcp.svg?style=flat-square&logo=packagist)](https://packagist.org/packages/spiral/roadrunner-tcp)
+[![License](https://img.shields.io/packagist/l/spiral/roadrunner-tcp.svg?style=flat-square)](LICENSE)
+[![Total Downloads](https://img.shields.io/packagist/dt/spiral/roadrunner-tcp.svg?style=flat-square)](https://packagist.org/packages/spiral/roadrunner-tcp/stats)
+
+### Application Server
+
+The package contains only the PHP worker; the RoadRunner binary is installed separately.
 You can use the convenient installer to download the latest available compatible version of RoadRunner assembly:
 
 ```bash
@@ -57,11 +61,14 @@ To download latest version of application server (the standard build, without th
 vendor/bin/rr get
 ```
 
-## Usage
+### Configuration
 
-For example, such a configuration would be quite feasible to run:
+Declare the TCP servers and the worker pool in `.rr.yaml`:
 
 ```yaml
+server:
+  command: "php worker.php"
+
 tcp:
   servers:
     smtp:
@@ -78,11 +85,13 @@ tcp:
 ```
 
 If you have more than 1 worker in your pool TCP server will send received packets to different workers,
-and if you need to collect data you have to use storage, that can be accessed by all workers, for example [RoadRunner Key Value](https://github.com/spiral/roadrunner-kv)
+and if you need to collect data you have to use storage, that can be accessed by all workers, for example [RoadRunner Key Value](https://github.com/roadrunner-php/kv).
 
-### Example
+See the [TCP plugin documentation](https://docs.roadrunner.dev/docs/plugins/tcp) for all options.
 
-To init abstract RoadRunner worker:
+### Writing a Worker
+
+`worker.php` wraps the RoadRunner worker into `TcpWorker` and handles connection events in a loop:
 
 ```php
 <?php
@@ -124,8 +133,8 @@ while ($request = $tcpWorker->waitRequest()) {
                    
             $body = $request->getBody();
             
-            // ... handle request from TCP server [tcp_access_point_1]
-            if ($request->getServer() === 'tcp_access_point_1') {
+            // ... handle request from TCP server [smtp]
+            if ($request->getServer() === 'smtp') {
 
                 // Send response and close connection
                 $tcpWorker->respond('Access denied', TcpResponse::RespondClose);
@@ -161,11 +170,8 @@ while ($request = $tcpWorker->waitRequest()) {
 <img src="https://user-images.githubusercontent.com/773481/220979012-e67b74b5-3db1-41b7-bdb0-8a042587dedc.jpg" alt="try Spiral Framework" />
 </a>
 
-## Testing:
+## Testing
 
-This codebase is automatically tested via host repository - [spiral/roadrunner](https://github.com/spiral/roadrunner).
-
-## License:
-
-The MIT License (MIT). Please see [`LICENSE`](./LICENSE) for more information. Maintained
-by [Spiral Scout](https://spiralscout.com).
+```bash
+composer tests
+```
