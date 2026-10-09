@@ -15,15 +15,6 @@ final class TcpWorkerTest extends TestCase
     private TcpWorker $tcpWorker;
     private WorkerInterface $worker;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->tcpWorker = new TcpWorker(
-            $this->worker = $this->createMock(WorkerInterface::class)
-        );
-    }
-
     public function testNullablePayloadShouldCloseConnection()
     {
         $this->worker
@@ -34,7 +25,7 @@ final class TcpWorkerTest extends TestCase
         $this->worker
             ->expects($this->once())
             ->method('respond')
-            ->with($this->callback(function(Payload $payload){
+            ->with($this->callback(function (Payload $payload) {
                 return $payload->body === '' && $payload->header === TcpResponse::Close->value;
             }));
 
@@ -65,7 +56,7 @@ final class TcpWorkerTest extends TestCase
             ->method('waitPayload')
             ->willReturn(new Payload('foo', json_encode([
                 'remote_addr' => $remoteIp, 'server' => $server,
-                'uuid' => $uuid, 'event' => $event->value
+                'uuid' => $uuid, 'event' => $event->value,
             ])));
 
         $request = $this->tcpWorker->waitRequest();
@@ -81,7 +72,7 @@ final class TcpWorkerTest extends TestCase
         $this->worker
             ->expects($this->once())
             ->method('respond')
-            ->with($this->callback(function(Payload $payload){
+            ->with($this->callback(function (Payload $payload) {
                 return $payload->body === '' && $payload->header === TcpResponse::Read->value;
             }));
 
@@ -93,7 +84,7 @@ final class TcpWorkerTest extends TestCase
         $this->worker
             ->expects($this->once())
             ->method('respond')
-            ->with($this->callback(function(Payload $payload){
+            ->with($this->callback(function (Payload $payload) {
                 return $payload->body === '' && $payload->header === TcpResponse::Close->value;
             }));
 
@@ -105,7 +96,7 @@ final class TcpWorkerTest extends TestCase
         $this->worker
             ->expects($this->once())
             ->method('respond')
-            ->with($this->callback(function(Payload $payload){
+            ->with($this->callback(function (Payload $payload) {
                 return $payload->body === 'foo' && $payload->header === TcpResponse::Respond->value;
             }));
 
@@ -117,7 +108,7 @@ final class TcpWorkerTest extends TestCase
         $this->worker
             ->expects($this->once())
             ->method('respond')
-            ->with($this->callback(function(Payload $payload){
+            ->with($this->callback(function (Payload $payload) {
                 return $payload->body === 'foo' && $payload->header === TcpResponse::RespondClose->value;
             }));
 
@@ -127,5 +118,14 @@ final class TcpWorkerTest extends TestCase
     public function testGetsWorker()
     {
         $this->assertSame($this->worker, $this->tcpWorker->getWorker());
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->tcpWorker = new TcpWorker(
+            $this->worker = $this->createMock(WorkerInterface::class),
+        );
     }
 }
