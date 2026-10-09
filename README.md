@@ -29,6 +29,14 @@ RoadRunner includes TCP server and can be used to replace classic TCP setup with
 This repository contains the codebase TCP PHP workers. Check [spiral/roadrunner](https://github.com/spiral/roadrunner)
 to get application server.
 
+> [!WARNING]
+> The TCP plugin is not included in the standard RoadRunner v3 build. To use the `tcp:` plugin with RoadRunner v3,
+> build the server yourself with [Velox](https://github.com/roadrunner-server/docs/blob/release/v3/customization/build.md)
+> and add the `github.com/roadrunner-server/tcp/v6` plugin, or stay on RoadRunner v2025.
+> At the time of the RoadRunner v3.0.0 release, `github.com/roadrunner-server/tcp/v6` has only beta tags.
+> This does not affect the `tcp://` transport for RPC or worker relays.
+> See the [TCP plugin documentation](https://github.com/roadrunner-server/docs/blob/release/v3/plugins/tcp.md).
+
 ## Installation
 
 To install application server and TCP codebase:
@@ -43,7 +51,7 @@ You can use the convenient installer to download the latest available compatible
 composer require spiral/roadrunner-cli --dev
 ```
 
-To download latest version of application server:
+To download latest version of application server (the standard build, without the TCP plugin):
 
 ```bash
 vendor/bin/rr get
