@@ -26,6 +26,7 @@ final class Request implements RequestInterface
      *
      * @return non-empty-string
      */
+    #[\Override]
     public function getRemoteAddress(): string
     {
         return $this->remoteAddr;
@@ -34,6 +35,7 @@ final class Request implements RequestInterface
     /**
      * Returns the connection event type (CONNECTED, DATA, CLOSED).
      */
+    #[\Override]
     public function getEvent(): TcpEvent
     {
         return $this->event;
@@ -42,6 +44,7 @@ final class Request implements RequestInterface
     /**
      * Returns the received data from the connection.
      */
+    #[\Override]
     public function getBody(): string
     {
         return $this->body;
@@ -52,6 +55,7 @@ final class Request implements RequestInterface
      *
      * @return non-empty-string
      */
+    #[\Override]
     public function getConnectionUuid(): string
     {
         return $this->connectionUuid;
@@ -62,6 +66,7 @@ final class Request implements RequestInterface
      *
      * @return non-empty-string
      */
+    #[\Override]
     public function getServer(): string
     {
         return $this->server;
