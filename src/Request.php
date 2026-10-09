@@ -19,8 +19,7 @@ final class Request implements RequestInterface
         private readonly string $body,
         private readonly string $connectionUuid,
         private readonly string $server,
-    ) {
-    }
+    ) {}
 
     /**
      * Returns the client's IP address.

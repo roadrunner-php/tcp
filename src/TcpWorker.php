@@ -21,8 +21,7 @@ class TcpWorker implements TcpWorkerInterface
 {
     public function __construct(
         private readonly WorkerInterface $worker,
-    ) {
-    }
+    ) {}
 
     public function getWorker(): WorkerInterface
     {
