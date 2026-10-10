@@ -25,18 +25,26 @@ RoadRunner can serve raw TCP connections and pass their events to PHP workers.
 This package provides the worker side: it receives connection events and data from the TCP servers configured
 in [RoadRunner](https://github.com/roadrunner-server/roadrunner) and responds, keeps reading, or closes the connection.
 
+> [!WARNING]
+> The TCP plugin is not included in the standard RoadRunner v3 build. To use the `tcp:` plugin with RoadRunner v3,
+> build the server yourself with [Velox](https://github.com/roadrunner-server/docs/blob/release/v3/customization/build.md)
+> and add the `github.com/roadrunner-server/tcp/v6` plugin, or stay on RoadRunner v2025.
+> At the time of the RoadRunner v3.0.0 release, `github.com/roadrunner-server/tcp/v6` has only beta tags.
+> This does not affect the `tcp://` transport for RPC or worker relays.
+> See the [TCP plugin documentation](https://github.com/roadrunner-server/docs/blob/release/v3/plugins/tcp.md).
+
 ## Get Started
 
 ### Installation
 
 ```bash
-composer require spiral/roadrunner-tcp
+composer require roadrunner/tcp
 ```
 
-[![PHP](https://img.shields.io/packagist/php-v/spiral/roadrunner-tcp.svg?style=flat-square&logo=php)](https://packagist.org/packages/spiral/roadrunner-tcp)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spiral/roadrunner-tcp.svg?style=flat-square&logo=packagist)](https://packagist.org/packages/spiral/roadrunner-tcp)
-[![License](https://img.shields.io/packagist/l/spiral/roadrunner-tcp.svg?style=flat-square)](LICENSE)
-[![Total Downloads](https://img.shields.io/packagist/dt/spiral/roadrunner-tcp.svg?style=flat-square)](https://packagist.org/packages/spiral/roadrunner-tcp/stats)
+[![PHP](https://img.shields.io/packagist/php-v/roadrunner/tcp.svg?style=flat-square&logo=php)](https://packagist.org/packages/roadrunner/tcp)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/roadrunner/tcp.svg?style=flat-square&logo=packagist)](https://packagist.org/packages/roadrunner/tcp)
+[![License](https://img.shields.io/packagist/l/roadrunner/tcp.svg?style=flat-square)](LICENSE)
+[![Total Downloads](https://img.shields.io/packagist/dt/roadrunner/tcp.svg?style=flat-square)](https://packagist.org/packages/roadrunner/tcp/stats)
 
 ### Application Server
 
@@ -44,10 +52,10 @@ The package contains only the PHP worker; the RoadRunner binary is installed sep
 You can use the convenient installer to download the latest available compatible version of RoadRunner assembly:
 
 ```bash
-composer require spiral/roadrunner-cli --dev
+composer require roadrunner/cli --dev
 ```
 
-To download latest version of application server:
+To download latest version of application server (the standard build, without the TCP plugin):
 
 ```bash
 vendor/bin/rr get

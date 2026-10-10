@@ -3,13 +3,13 @@
     "release-type": "php",
     "packages": {
         ".": {
-            "package-name": "spiral/roadrunner-tcp",
+            "package-name": "roadrunner/tcp",
             "changelog-path": "/CHANGELOG.md"
         }
     },
     "bootstrap-sha": "b00582d3485577e4919a33cad02e70e1429b5408",
     "include-component-in-tag": false,
-    "include-v-in-tag": true,
+    "include-v-in-tag": false,
     "changelog-sections": [
         {
             "type": "feat",
