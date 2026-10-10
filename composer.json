@@ -1,34 +1,42 @@
 {
-    "name": "spiral/roadrunner-tcp",
+    "name": "roadrunner/tcp",
     "type": "library",
-    "description": "RoadRunner: TCP worker",
+    "description": "PHP worker for the RoadRunner TCP plugin: handle raw TCP connection events and data in RoadRunner workers",
+    "keywords": [
+        "roadrunner",
+        "tcp",
+        "socket",
+        "server",
+        "worker"
+    ],
     "license": "MIT",
     "authors": [
         {
-            "name": "Anton Titov (wolfy-j)",
-            "email": "wolfy-j@spiralscout.com"
+            "name": "Anton Titov",
+            "homepage": "https://github.com/wolfy-j"
         },
         {
-            "name": "Pavel Buchnev (butschster)",
-            "email": "pavel.buchnev@spiralscout.com"
+            "name": "Pavel Buchnev",
+            "homepage": "https://github.com/butschster"
         },
         {
-            "name": "Aleksei Gagarin (roxblnfk)",
-            "email": "alexey.gagarin@spiralscout.com"
+            "name": "Aleksei Gagarin",
+            "homepage": "https://github.com/roxblnfk"
         },
         {
-            "name": "Maksim Smakouz (msmakouz)",
-            "email": "maksim.smakouz@spiralscout.com"
+            "name": "Maksim Smakouz",
+            "homepage": "https://github.com/msmakouz"
         },
         {
             "name": "RoadRunner Community",
-            "homepage": "https://github.com/spiral/roadrunner/graphs/contributors"
+            "homepage": "https://github.com/roadrunner-server/roadrunner/graphs/contributors"
         }
     ],
     "homepage": "https://roadrunner.dev/",
     "support": {
-        "docs": "https://docs.roadrunner.dev",
+        "docs": "https://docs.roadrunner.dev/docs/plugins/tcp",
         "issues": "https://github.com/roadrunner-server/roadrunner/issues",
+        "source": "https://github.com/roadrunner-php/tcp",
         "forum": "https://forum.roadrunner.dev/",
         "chat": "https://discord.gg/V6EK4he"
     },
@@ -41,8 +49,22 @@
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
-        "spiral/roadrunner": "^3.0",
-        "spiral/roadrunner-worker": "^3.7"
+        "roadrunner/worker": "^3.8",
+        "spiral/roadrunner": "^3.0"
+    },
+    "require-dev": {
+        "jetbrains/phpstorm-attributes": "^1.0",
+        "mockery/mockery": "^1.6",
+        "spiral/code-style": "^2.3.1",
+        "testo/bridge-mockery": "^0.1.2",
+        "testo/testo": "^0.10.55",
+        "vimeo/psalm": "^6 || ^7"
+    },
+    "replace": {
+        "spiral/roadrunner-tcp": "self.version"
+    },
+    "suggest": {
+        "roadrunner/cli": "Provides RoadRunner installation and management CLI tools"
     },
     "autoload": {
         "psr-4": {
@@ -54,14 +76,6 @@
             "Spiral\\RoadRunner\\Tcp\\Tests\\": "tests"
         }
     },
-    "require-dev": {
-        "jetbrains/phpstorm-attributes": "^1.0",
-        "mockery/mockery": "^1.6",
-        "spiral/code-style": "^2.3.1",
-        "testo/bridge-mockery": "^0.1.2",
-        "testo/testo": "^0.10.55",
-        "vimeo/psalm": "^6 || ^7"
-    },
     "scripts": {
         "cs:diff": "php-cs-fixer fix --dry-run -v --diff",
         "cs:fix": "php-cs-fixer fix -v",
@@ -69,9 +83,6 @@
         "psalm": "psalm",
         "test": "vendor/bin/testo",
         "test:unit": "vendor/bin/testo --suite=Unit"
-    },
-    "suggest": {
-        "spiral/roadrunner-cli": "Provides RoadRunner installation and management CLI tools"
     },
     "config": {
         "audit": {

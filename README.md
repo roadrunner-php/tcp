@@ -38,13 +38,13 @@ in [RoadRunner](https://github.com/roadrunner-server/roadrunner) and responds, k
 ### Installation
 
 ```bash
-composer require spiral/roadrunner-tcp
+composer require roadrunner/tcp
 ```
 
-[![PHP](https://img.shields.io/packagist/php-v/spiral/roadrunner-tcp.svg?style=flat-square&logo=php)](https://packagist.org/packages/spiral/roadrunner-tcp)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spiral/roadrunner-tcp.svg?style=flat-square&logo=packagist)](https://packagist.org/packages/spiral/roadrunner-tcp)
-[![License](https://img.shields.io/packagist/l/spiral/roadrunner-tcp.svg?style=flat-square)](LICENSE)
-[![Total Downloads](https://img.shields.io/packagist/dt/spiral/roadrunner-tcp.svg?style=flat-square)](https://packagist.org/packages/spiral/roadrunner-tcp/stats)
+[![PHP](https://img.shields.io/packagist/php-v/roadrunner/tcp.svg?style=flat-square&logo=php)](https://packagist.org/packages/roadrunner/tcp)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/roadrunner/tcp.svg?style=flat-square&logo=packagist)](https://packagist.org/packages/roadrunner/tcp)
+[![License](https://img.shields.io/packagist/l/roadrunner/tcp.svg?style=flat-square)](LICENSE)
+[![Total Downloads](https://img.shields.io/packagist/dt/roadrunner/tcp.svg?style=flat-square)](https://packagist.org/packages/roadrunner/tcp/stats)
 
 ### Application Server
 
@@ -52,7 +52,7 @@ The package contains only the PHP worker; the RoadRunner binary is installed sep
 You can use the convenient installer to download the latest available compatible version of RoadRunner assembly:
 
 ```bash
-composer require spiral/roadrunner-cli --dev
+composer require roadrunner/cli --dev
 ```
 
 To download latest version of application server (the standard build, without the TCP plugin):
