@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.3.0](https://github.com/roadrunner-php/tcp/compare/v4.2.0...4.3.0) (2026-10-10)
+
+
+### Features
+
+* rename the package to roadrunner/tcp ([d3ce906](https://github.com/roadrunner-php/tcp/commit/d3ce906a99830829c3420476a04f0652f3c810de))
+* support RoadRunner v3 ([#13](https://github.com/roadrunner-php/tcp/issues/13)) ([d3ce906](https://github.com/roadrunner-php/tcp/commit/d3ce906a99830829c3420476a04f0652f3c810de))
+
 ## [4.2.0](https://github.com/roadrunner-php/tcp/compare/v4.1.1...v4.2.0) (2026-10-10)
 
 
