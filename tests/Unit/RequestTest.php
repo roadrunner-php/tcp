@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Spiral\RoadRunner\Tcp\Tests\Unit;
 
-use Testo\Test;
-use Testo\Assert;
 use Spiral\RoadRunner\Tcp\Request;
 use Spiral\RoadRunner\Tcp\TcpEvent;
+use Testo\Assert;
+use Testo\Test;
 
 #[Test]
 final class RequestTest

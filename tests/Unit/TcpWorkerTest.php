@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Spiral\RoadRunner\Tcp\Tests\Unit;
 
-use Testo\Data\DataSet;
-use Testo\Test;
-use Testo\Expect;
-use Testo\Assert;
-use Testo\Lifecycle\BeforeTest;
 use Mockery\MockInterface;
 use Spiral\RoadRunner\Payload;
 use Spiral\RoadRunner\Tcp\TcpEvent;
 use Spiral\RoadRunner\Tcp\TcpResponse;
 use Spiral\RoadRunner\Tcp\TcpWorker;
 use Spiral\RoadRunner\WorkerInterface;
+use Testo\Assert;
+use Testo\Data\DataSet;
+use Testo\Expect;
+use Testo\Lifecycle\BeforeTest;
+use Testo\Test;
 
 #[Test]
 final class TcpWorkerTest
