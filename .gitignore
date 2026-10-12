@@ -1,7 +1,7 @@
-# Dependency directories (remove the comment below to include it)
-# vendor/
-.idea
-build
-vendor
-composer.lock
-runtime/
+/.*/
+!/.github/
+/runtime/
+/vendor/
+/composer.lock
+/.env
+*.log
