@@ -49,8 +49,8 @@
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
-        "roadrunner/worker": "^3.8",
-        "spiral/roadrunner": "^3.0"
+        "roadrunner/roadrunner": "^3.0",
+        "roadrunner/worker": "^3.8"
     },
     "require-dev": {
         "jetbrains/phpstorm-attributes": "^1.0",
