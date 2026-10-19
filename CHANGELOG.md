@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.1](https://github.com/roadrunner-php/tcp/compare/4.3.0...4.3.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* require roadrunner/roadrunner instead of spiral/roadrunner ([d9c4dff](https://github.com/roadrunner-php/tcp/commit/d9c4dff16fd1381ced957d0a9a74e3d6b99ab2bc))
+
 ## [4.3.0](https://github.com/roadrunner-php/tcp/compare/v4.2.0...4.3.0) (2026-10-10)
 
 
